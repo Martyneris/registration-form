@@ -25,8 +25,6 @@ export const dispatch = store.dispatch;
 
 store.subscribe(() => {
 
-  const state = store.getState();
-
   const { users } = store.getState();
 
   saveState({

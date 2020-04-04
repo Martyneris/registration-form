@@ -11,15 +11,8 @@ import SmallerInput from '../../components/inputs/smallerInput'
 
 class RegisterForm extends React.Component {
 
-    componentDidMount() {
-
-        // this.nameInput.focus();
-    };
 
     state = {
-        // input: '',
-        // results: [],
-        // errors: [],
         loading: false,
         active: false,
         firstName: '',
@@ -33,25 +26,12 @@ class RegisterForm extends React.Component {
         formValid: false
     };
 
-    // togglePopup = () => {
-    //     this.setState({ active: !this.state.active })
-    // };
-
-
     handleInput = (e, title) => {
-        // console.log(e.target)
-        // console.log(e.target.value)
-        // console.log(isFieldValid(e.target.value, title))
-        // isFieldValid(e.target.value, title) ?
         this.setState({ [title]: e.target.value, formValid: true })
-        // :
-        // this.setState({ [title]: e.target.value, [`${title}Error`]: true, formValid: false })
     };
 
     handleDropdownSelect = (e, title) => {
         const { formatted_address } = e.autocomplete.getPlace()
-        // console.log(e.autocomplete.getPlace())
-        // console.log(formatted_address)
         isFieldValid(formatted_address, "address") ?
             this.setState({ [title]: formatted_address, formValid: true })
             :
@@ -118,8 +98,6 @@ class RegisterForm extends React.Component {
             { title: "postcode", value: postcode, placeholder: 'Postcode' }
         ]
 
-        console.log(this.state)
-        console.log(this.props)
         return (
             <div className="container">
                 <div>
@@ -143,8 +121,6 @@ class RegisterForm extends React.Component {
                             placeholder="Address"
                             className="input"
                             value={address}
-                            // targetArea="New York, NY"
-                            // locationType="(street_address)"
                             googleAPIKey="AIzaSyB2XlJYSmbHgzGQlzAE1hPt_rMKnCX1Ghg"
                             onChange={(e) => this.handleInput(e, "address")}
                             onDropdownSelect={(e) => this.handleDropdownSelect(e, "address")}

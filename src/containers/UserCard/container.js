@@ -3,7 +3,6 @@ import { updateUser, removeUser } from '../../state/actions/usersActions';
 import { connect } from 'react-redux';
 import Title from '../../components/texts/Title';
 import Button from '../../components/buttons/Button';
-// import Popup from './Popup';
 import { isFieldValid } from '../../utils/validations';
 import LocationAutocomplete from 'location-autocomplete';
 import RegularInput from '../../components/inputs/regularInput';
@@ -11,31 +10,23 @@ import SmallerInput from '../../components/inputs/smallerInput'
 
 class UserCard extends React.Component {
 
-    componentDidMount() {
-        console.log(this.state)
-    };
-
     state = this.props.user;
-
-    // togglePopup = () => {
-    //     this.setState({ active: !this.state.active })
-    // };
 
 
     handleInput = (e, title) => {
-        this.setState({ [title]: e.target.value, formValid: true })
+        this.setState({ [title]: e.target.value })
     };
 
     handleDropdownSelect = (e, title) => {
         const { formatted_address } = e.autocomplete.getPlace()
         isFieldValid(formatted_address, "address") ?
-            this.setState({ [title]: formatted_address, formValid: true })
+            this.setState({ [title]: formatted_address })
             :
-            this.setState({ [title]: formatted_address, formValid: false })
+            this.setState({ [title]: formatted_address })
     }
 
     saveChanges = (key) => {
-        const { formValid, firstName, lastName, email, address, country, city, house, postcode } = this.state;
+        const { firstName, lastName, email, address, country, city, house, postcode } = this.state;
         const { updateUser } = this.props;
         updateUser(
             {
@@ -58,8 +49,7 @@ class UserCard extends React.Component {
             country: '',
             city: '',
             house: '',
-            postcode: '',
-            formValid: false,
+            postcode: ''
         })
     }
 
@@ -107,7 +97,7 @@ class UserCard extends React.Component {
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
                                 <span
                                     onClick={() => removeUser(keyId)}
-                                    style={{ color: 'red', fontWeight: 'bold', fontSize: '20px' }}
+                                    style={{ color: 'red', fontWeight: 'bold', fontSize: '20px', cursor: 'pointer' }}
                                 >X</span>
                             </div>
                             {
@@ -128,8 +118,6 @@ class UserCard extends React.Component {
                                 placeholder="Address"
                                 className="input"
                                 value={address ? address : user.address}
-                                // targetArea="New York, NY"
-                                // locationType="(street_address)"
                                 googleAPIKey="AIzaSyB2XlJYSmbHgzGQlzAE1hPt_rMKnCX1Ghg"
                                 onChange={(e) => this.handleInput(e, "address")}
                                 onDropdownSelect={(e) => this.handleDropdownSelect(e, "address")}

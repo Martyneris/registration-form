@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Title from '../../components/texts/Title';
 import UserCard from '../UserCard/container'
 import Button from '../../components/buttons/Button';
-// import Popup from './Popup';
 
 class UsersList extends React.Component {
 
