@@ -1,0 +1,19 @@
+// available layouts for responsive design
+
+@mixin tablet-h{
+    @media(max-width: 1200px){
+      @content
+    }
+  }
+  
+  @mixin tablet-p{
+    @media(max-width: 900px){
+      @content
+    }
+  }
+  
+  @mixin mobile{
+    @media(max-width: 600px){
+      @content
+    }
+  }
